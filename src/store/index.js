@@ -2,9 +2,7 @@ import { createStore } from "vuex";
 import axios from "axios";
 import _ from "lodash";
 
-export default createStore <
-  RootState >
-  {
+export default createStore({
     state: {
       endpoints: {
         endpointCurrent: "http://meteo.wachcio.pl/API/GetJSON.php?data=current",
