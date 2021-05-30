@@ -11,17 +11,14 @@
 
 <script>
 export default {
-  name: "AnimateCSS",
-  props: ["appear", "enter", "leave"],
+  name: 'AnimateCSS',
+  props: ['appear', 'enter', 'leave'],
   data() {
     return {};
-  }
+  },
 };
 </script>
 
-<style lang="sass" scoped>
-
-@import "animateCSS.css";
+<style lang="scss" scoped>
+@import 'animateCSS.css';
 </style>
-
-
