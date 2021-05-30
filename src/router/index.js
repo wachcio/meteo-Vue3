@@ -1,18 +1,20 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 
 // import SensorCategory from "../components/Sensor/SensorCategory";
+import SensorCategory from "../components/HelloWorld.vue";
 // import ArchivesMain from "../components/Archives/ArchivesMain";
 // import About from "../components/About";
 
-const routes: Array<RouteRecordRaw> = [
+// const routes: Array<RouteRecordRaw> = [
+const routes = [
+  // {
+  //   path: "/",
+  //   redirect: "/current",
+  // },
   {
-    path: "/",
-    redirect: "/current",
+    path: "/current",
+    component: SensorCategory,
   },
-  //   {
-  //     path: "/current",
-  //     component: SensorCategory,
-  //   },
   //   {
   //     path: "/archive",
   //     component: ArchivesMain,
