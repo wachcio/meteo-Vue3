@@ -88,7 +88,10 @@ export default {
 
       let diffMinute = 4;
 
-      if (this.sensorCurrent.sensorCategoryTitle === 'Czujnik pyłu na ul. Warszawskiej')
+      if (
+        this.sensorCurrent.sensorCategoryTitle === 'Czujnik pyłu na ul. Warszawskiej' ||
+        this.sensorCurrent.sensorCategoryTitle === 'Czujnik pyłu na ul. Cholewińskiego'
+      )
         diffMinute = 17;
 
       if (diff > diffMinute) {

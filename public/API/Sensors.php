@@ -237,10 +237,12 @@ class Sensors
 
         //-------------------------------------czystość powietrza ----------------------------------
 
-        if ($sensorType == "Czujnik pyłu na ul. Warszawskiej") {
-            $arr["sensorCategoryNr"] = 3;
+        if (($sensorType == "Czujnik pyłu na ul. Warszawskiej") || ($sensorType == "Czujnik pyłu na ul. Cholewińskiego")) {
+            if ($sensorType == "Czujnik pyłu na ul. Warszawskiej") {$arr["sensorCategoryNr"] = 3;}
+            if ($sensorType == "Czujnik pyłu na ul. Cholewińskiego") {$arr["sensorCategoryNr"] = 4;}
 
             $arr["valueCurrent"] = $db->getData("SELECT `" . $fieldName . "`, `data_odczytu`, `id` FROM  `" . $tableName . "` ORDER BY  `id` DESC LIMIT 0 , 1");
+            // $arr["zapytanie"] = "SELECT `" . $fieldName . "`, `data_odczytu`, `id` FROM  `" . $tableName . "` ORDER BY  `id` DESC LIMIT 0 , 1";
             $arr["valueMax"] = $db->getData("SELECT `" . $fieldName . "`, `data_odczytu`, `id` FROM  `" . $tableName . "` WHERE  `data_odczytu` > DATE_SUB( NOW( ) , INTERVAL 1 DAY ) ORDER BY `" . $fieldName . "` DESC LIMIT 1");
             $arr["valueMin"] = $db->getData("SELECT `" . $fieldName . "`, `data_odczytu`, `id` FROM  `" . $tableName . "` WHERE  `data_odczytu` > DATE_SUB( NOW( ) , INTERVAL 1 DAY ) ORDER BY `" . $fieldName . "` ASC LIMIT 1");
 
@@ -299,7 +301,7 @@ class Sensors
         $datetime2 = new DateTime($arr["valueCurrent"]["date"]);
         $interval = $datetime1->diff($datetime2);
 
-        if (intval($interval->format('%d%h%i')) > 5) {
+        if (intval($interval->format('%d%h%i')) > 16) {
             $arr["upToDate"] = false;
         } else {
             $arr["upToDate"] = true;
@@ -590,15 +592,18 @@ class Sensors
 
         // //  ------------------------------------czystość powietrza ----------------------------------
 
-        if ($sensorType == "Czujnik pyłu na ul. Warszawskiej") {
-            $arr["sensorCategoryNr"] = 4;
+        if (($sensorType == "Czujnik pyłu na ul. Warszawskiej") || ($sensorType == "Czujnik pyłu na ul. Cholewińskiego")) {
+            if ($sensorType == "Czujnik pyłu na ul. Warszawskiej") {$arr["sensorCategoryNr"] = 3;
+                $db_dust = "pyl_warszawska";}
+            if ($sensorType == "Czujnik pyłu na ul. Cholewińskiego") {$arr["sensorCategoryNr"] = 4;
+                $db_dust = "pyl_cholewinskiego";}
 
             if (($operation == "avg") || ($operation == "max") || ($operation == "min")) {
                 if ($operation == "avg") {
-                    $query = "SELECT " . $operation . "(`" . $fieldName . "`) AS `" . $operation . "` FROM  `pyl_warszawska` WHERE YEAR( `data_odczytu`) = " . $year;
+                    $query = "SELECT " . $operation . "(`" . $fieldName . "`) AS `" . $operation . "` FROM  `" . $db_dust . "` WHERE YEAR( `data_odczytu`) = " . $year;
                 }
                 if ($operation == "max" || $operation == "min") {
-                    $query = "SELECT `" . $fieldName . "` AS `" . $operation . "`, `data_odczytu` FROM  `pyl_warszawska` WHERE YEAR( `data_odczytu`) = " . $year;
+                    $query = "SELECT `" . $fieldName . "` AS `" . $operation . "`, `data_odczytu` FROM  `" . $db_dust . "` WHERE YEAR( `data_odczytu`) = " . $year;
                 }
 
                 //zagnieździć ify żeby wyeliminować możliwość podania godziny bez miesiąca itd
