@@ -7,23 +7,23 @@
 
 <script>
 export default {
-  name: "SensorIcon",
+  name: 'SensorIcon',
   props: {
-    sensorCurrent: Object
+    sensorCurrent: Object,
   },
   methods: {
     windIconCorrection(sensor) {
-      let picture = "";
+      let picture = '';
 
-      if (sensor.sensorName === "Kierunek wiatru") {
+      if (sensor.sensorName === 'Kierunek wiatru') {
         // picture = "./" + sensor.picture; //dla serwera produkcyjnego
-        picture = `http://meteo.wachcio.pl/${  sensor.picture}`; // dla serwera lokalnego
+        picture = `http://meteo.wachcio.pl/${sensor.picture}`; // dla serwera lokalnego
       } else {
-        picture = `./assets/${  sensor.picture}`;
+        picture = `./assets/${sensor.picture}`;
       }
       return picture;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -48,7 +48,7 @@ export default {
 
 .windDirection {
   /* background-image: url("../img/kafelek.png"); */
-  background-image: url("../../assets/kafelek.png");
+  background-image: url('../../assets/kafelek.png');
   background-repeat: no-repeat;
   width: 137px;
   height: 137px;
