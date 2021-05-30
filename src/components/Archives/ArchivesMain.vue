@@ -6,24 +6,24 @@
 </template>
 
 <script>
-import axios from "axios";
-import { mapState, mapMutations, mapActions } from "vuex";
-import ArchivesForm from "./ArchivesForm";
+import axios from 'axios';
+import { mapState, mapMutations, mapActions } from 'vuex';
+import ArchivesForm from './ArchivesForm.vue';
 
 export default {
-  name: "ArchivesMain",
+  name: 'ArchivesMain',
   components: {
-    ArchivesForm
+    ArchivesForm,
   },
   props: {},
   data() {
     return {
       sensorsNames: [],
-      endpointNames: "http://meteo.wachcio.pl/API/GetJSON.php?getSensorName=all"
+      endpointNames: 'http://meteo.wachcio.pl/API/GetJSON.php?getSensorName=all',
     };
   },
   computed: {
-    ...mapState(["sensorsCurrent", "isLoaded", "showInfo", "sensorActive"])
+    ...mapState(['sensorsCurrent', 'isLoaded', 'showInfo', 'sensorActive']),
   },
   created() {
     if (this.sensorsNames.length === 0) {
@@ -31,13 +31,13 @@ export default {
         .get(this.endpointNames)
         // eslint-disable-next-line no-return-assign
         .then(res => (this.sensorsNames = res.data))
-        .then(this.$store.commit("isLoadedChange", true));
+        .then(this.$store.commit('isLoadedChange', true));
     }
   },
   methods: {
-    ...mapMutations(["updateSensorsCurrent", "isLoadedChange"]),
-    ...mapActions(["getCurrentJSON"])
-  }
+    ...mapMutations(['updateSensorsCurrent', 'isLoadedChange']),
+    ...mapActions(['getCurrentJSON']),
+  },
 };
 </script>
 

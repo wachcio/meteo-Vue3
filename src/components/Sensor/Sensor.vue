@@ -10,49 +10,48 @@
 </template>
 
 <script>
-
-import { DateTime } from "luxon";
-import { mapState, mapMutations, mapActions } from "vuex";
-import SensorTitle from "./SensorTitle";
-import SensorIcon from "./SensorIcon";
-import SensorValues from "./SensorValues";
+import { DateTime } from 'luxon';
+import { mapState, mapMutations, mapActions } from 'vuex';
+import SensorTitle from './SensorTitle.vue';
+import SensorIcon from './SensorIcon.vue';
+import SensorValues from './SensorValues.vue';
 
 export default {
-  name: "Sensor",
+  name: 'Sensor',
   components: {
     SensorTitle,
     SensorIcon,
-    SensorValues
+    SensorValues,
   },
   props: {
-    sensorCurrent: Object
+    sensorCurrent: Object,
     // currentDate: Date
   },
   data() {
     return {
       upToDate: true,
-      sensorHint: ""
+      sensorHint: '',
     };
   },
   computed: {
-    ...mapState(["sensorsCurrent", "isLoaded", "showInfo", "sensorActive"])
+    ...mapState(['sensorsCurrent', 'isLoaded', 'showInfo', 'sensorActive']),
   },
 
   watch: {
     currentDate() {
       this.tooltip();
-    }
+    },
   },
   mounted() {
     this.tooltip();
   },
   methods: {
-    ...mapMutations(["updateSensorsCurrent"]),
-    ...mapActions(["getCurrentJSON"]),
+    ...mapMutations(['updateSensorsCurrent']),
+    ...mapActions(['getCurrentJSON']),
 
     clickSensor() {
-      this.$store.commit("sensorActive", this.sensorCurrent);
-      this.$store.commit("showInfo", true);
+      this.$store.commit('sensorActive', this.sensorCurrent);
+      this.$store.commit('showInfo', true);
     },
     diffDate(sensorDate) {
       // console.log(event);
@@ -60,23 +59,23 @@ export default {
       const i1 = DateTime.fromSQL(sensorDate);
       const i2 = DateTime.local();
       // i2 = event.timeStamp,
-      const diff = i2.diff(i1, ["days", "hours", "minutes", "seconds"]).toObject();
-      let result = "";
+      const diff = i2.diff(i1, ['days', 'hours', 'minutes', 'seconds']).toObject();
+      let result = '';
 
       if (diff.days) {
-        result += `${diff.days  } dni, `;
+        result += `${diff.days} dni, `;
       }
 
       if (diff.hours) {
-        result += `${diff.hours  } godzin/y, `;
+        result += `${diff.hours} godzin/y, `;
       }
 
       if (diff.minutes) {
-        result += `${diff.minutes  } minut/y, `;
+        result += `${diff.minutes} minut/y, `;
       }
 
       if (diff.seconds) {
-        result += `${Math.floor(diff.seconds)  } sekund`;
+        result += `${Math.floor(diff.seconds)} sekund`;
       }
 
       return result;
@@ -89,35 +88,26 @@ export default {
 
       let diffMinute = 4;
 
-      if (
-        this.sensorCurrent.sensorCategoryTitle ===
-        "Czujnik pyłu na ul. Warszawskiej"
-      )
+      if (this.sensorCurrent.sensorCategoryTitle === 'Czujnik pyłu na ul. Warszawskiej')
         diffMinute = 17;
 
       if (diff > diffMinute) {
         return {
-          error: true
+          error: true,
         };
       }
       return {};
-
     },
     tooltip(event) {
       // console.log(event);
 
-      return (
-        `Ostatni odczyt ${
-          this.sensorCurrent.valueCurrent.value
-        }${this.sensorCurrent.unit
-        } (${
-          this.diffDate(this.sensorCurrent.valueCurrent.date, event)
-        } temu)`
-      );
+      return `Ostatni odczyt ${this.sensorCurrent.valueCurrent.value}${
+        this.sensorCurrent.unit
+      } (${this.diffDate(this.sensorCurrent.valueCurrent.date, event)} temu)`;
 
       // setTimeout(this.hint, 1000);
-    }
-  }
+    },
+  },
 };
 </script>
 

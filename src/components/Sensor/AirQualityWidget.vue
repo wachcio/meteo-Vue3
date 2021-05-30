@@ -6,10 +6,10 @@
     ></iframe>
   </div>
 </template>
-<script src="https://airly.eu/map/airly.js" type="text/javascript"></script>
+
 <script>
 export default {
-  name: "AirQualityWidget",
+  name: 'AirQualityWidget',
   props: {},
   data() {
     return {};
@@ -17,7 +17,7 @@ export default {
   components: {},
   watch: {
     // sensorsCurrent
-  }
+  },
 };
 </script>
 
