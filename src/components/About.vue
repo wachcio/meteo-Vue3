@@ -82,7 +82,7 @@
 
 <script lang="ts">
 // import Vue from 'vue';
-import { Vue, Options } from 'vue-class-components';
+import { Vue, Options } from 'vue-class-component';
 import Lightgallery from 'lightgallery/vue';
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import lgZoom from 'lightgallery/plugins/zoom';
