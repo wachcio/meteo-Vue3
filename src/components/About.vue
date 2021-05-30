@@ -71,8 +71,8 @@
           :onInit="onInit"
           :onBeforeSlide="onBeforeSlide"
         >
-          <a v-for="img in lightGalleryImages" :key="img" :href="img">
-            <img :alt="img" :src="img" />
+          <a v-for="img in lightGalleryImages" :key="img.normalSize" :href="img.normalSize">
+            <img className="img-responsive" :alt="img" :src="img.thumbnails" />
           </a>
         </lightgallery>
       </div>
@@ -85,7 +85,8 @@
 import { Vue, Options } from 'vue-class-component';
 import Lightgallery from 'lightgallery/vue';
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
-import lgZoom from 'lightgallery/plugins/zoom';
+// import lgZoom from 'lightgallery/plugins/zoom';
+import lgZoom from 'lightgallery/scss/lightgallery.scss';
 
 @Options({
   components: {
@@ -93,17 +94,48 @@ import lgZoom from 'lightgallery/plugins/zoom';
   },
   data: () => ({
     plugins: [lgThumbnail, lgZoom],
+    sliderPath: 'http://meteo.wachcio.pl/assets/slider/',
     lightGalleryImages: [
-      'http://meteo.wachcio.pl/assets/slider/meteo1.png',
-      'http://meteo.wachcio.pl/assets/slider/meteo2.png',
-      'http://meteo.wachcio.pl/assets/slider/meteo3.png',
-      'http://meteo.wachcio.pl/assets/slider/meteo4.png',
-      'http://meteo.wachcio.pl/assets/slider/IMG_5905.jpg',
-      'http://meteo.wachcio.pl/assets/slider/IMG_5925.jpg',
-      'http://meteo.wachcio.pl/assets/slider/IMG_20190104_144055.jpg',
-      'http://meteo.wachcio.pl/assets/slider/IMG_20180407_161515269.jpg',
-      'http://meteo.wachcio.pl/assets/slider/IMG_20180407_161528834.jpg',
-      'http://meteo.wachcio.pl/assets/slider/IMG_20180408_112302544.jpg',
+      {
+        normalSize: 'http://meteo.wachcio.pl/assets/slider/meteo1.png',
+        thumbnails: 'http://meteo.wachcio.pl/assets/slider/thumbnails/meteo1.png',
+      },
+      {
+        normalSize: 'http://meteo.wachcio.pl/assets/slider/meteo2.png',
+        thumbnails: 'http://meteo.wachcio.pl/assets/slider/thumbnails/meteo2.png',
+      },
+      {
+        normalSize: 'http://meteo.wachcio.pl/assets/slider/meteo3.png',
+        thumbnails: 'http://meteo.wachcio.pl/assets/slider/thumbnails/meteo3.png',
+      },
+      {
+        normalSize: 'http://meteo.wachcio.pl/assets/slider/meteo4.png',
+        thumbnails: 'http://meteo.wachcio.pl/assets/slider/thumbnails/meteo4.png',
+      },
+      {
+        normalSize: 'http://meteo.wachcio.pl/assets/slider/IMG_5905.jpg',
+        thumbnails: 'http://meteo.wachcio.pl/assets/slider/thumbnails/IMG_5905.jpg',
+      },
+      {
+        normalSize: 'http://meteo.wachcio.pl/assets/slider/IMG_5925.jpg',
+        thumbnails: 'http://meteo.wachcio.pl/assets/slider/thumbnails/IMG_5925.jpg',
+      },
+      {
+        normalSize: 'http://meteo.wachcio.pl/assets/slider/IMG_20190104_144055.jpg',
+        thumbnails: 'http://meteo.wachcio.pl/assets/slider/thumbnails/IMG_20190104_144055.jpg',
+      },
+      {
+        normalSize: 'http://meteo.wachcio.pl/assets/slider/IMG_20180407_161515269.jpg',
+        thumbnails: 'http://meteo.wachcio.pl/assets/slider/thumbnails/IMG_20180407_161515269.jpg',
+      },
+      {
+        normalSize: 'http://meteo.wachcio.pl/assets/slider/IMG_20180407_161528834.jpg',
+        thumbnails: 'http://meteo.wachcio.pl/assets/slider/thumbnails/IMG_20180407_161528834.jpg',
+      },
+      {
+        normalSize: 'http://meteo.wachcio.pl/assets/slider/IMG_20180408_112302544.jpg',
+        thumbnails: 'http://meteo.wachcio.pl/assets/slider/thumbnails/IMG_20180408_112302544.jpg',
+      },
     ],
   }),
   methods: {
@@ -121,9 +153,9 @@ export default App;
 </script>
 
 <style lang="scss" scoped>
-@import 'lightgallery/css/lightgallery.css';
+/* @import 'lightgallery/css/lightgallery.css';
 @import 'lightgallery/css/lg-thumbnail.css';
-@import 'lightgallery/css/lg-zoom.css';
+@import 'lightgallery/css/lg-zoom.css'; */
 .wrapper {
   p {
     margin: 1.5em 1.5em;

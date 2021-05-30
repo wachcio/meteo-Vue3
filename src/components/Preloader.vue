@@ -1,24 +1,24 @@
 <template>
   <div v-if="!isLoaded && !sensorsCurrent.length" id="preloader">
-    <img src="../assets/preloader.png" />
+    <img src="http://meteo.wachcio.pl/assets/preloader.png" />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
-  name: "Sensor",
+  name: 'Sensor',
   components: {},
   props: {},
   data() {
     return {};
   },
   computed: {
-    ...mapState(["sensorsCurrent", "isLoaded", "showInfo", "sensorActive"])
+    ...mapState(['sensorsCurrent', 'isLoaded', 'showInfo', 'sensorActive']),
   },
   watch: {},
-  methods: {}
+  methods: {},
 };
 </script>
 
