@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="container">
-      <div class="item refresh" @click="getCurrentJSON()" :class="getClassRefreshButton()">
+      <div class="item refresh" :class="getClassRefreshButton()" @click="isCurrentPath()">
         Odśwież dane
       </div>
       <router-link to="/current" tag="div" class="item current" active-class="active" exact>
@@ -33,6 +33,12 @@ export default {
       if (this.$route.path != '/current') {
         return 'disable';
       }
+    },
+    isCurrentPath() {
+      if (this.$route.path === '/current') {
+        return this.getCurrentJSON();
+      }
+      return false;
     },
   },
 };
