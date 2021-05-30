@@ -11,14 +11,14 @@
           {{ h1Title(sensorsCurrent[newCategoryIndex[n - 1]]) }}
         </h1>
 
-        <AnimateCSS enter="lightSpeedIn" leave="lightSpeedOut" appear="appear">
-          <div v-show="categoryVisible[n - 1]" class="sensorWrapper">
-            <div v-for="(sensorCurrent, i) in sensorsToCategory(n)" :key="i">
-              <Sensor :sensor-current="sensorCurrent" />
-            </div>
-            <AirQualityWidget v-if="n == nrOfCategory" />
+        <!-- <AnimateCSS enter="lightSpeedIn" leave="lightSpeedOut" appear="appear"> -->
+        <div v-show="categoryVisible[n - 1]" class="sensorWrapper">
+          <div v-for="(sensorCurrent, i) in sensorsToCategory(n)" :key="i">
+            <Sensor :sensor-current="sensorCurrent" />
           </div>
-        </AnimateCSS>
+          <AirQualityWidget v-if="n == nrOfCategory" />
+        </div>
+        <!-- </AnimateCSS> -->
       </div>
     </div>
 
