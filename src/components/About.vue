@@ -65,35 +65,65 @@
       miesiąc, dzień i godzina
     </p>
     <div class="sliderContainer">
-      <div class="sliderWrapper"></div>
+      <div class="sliderWrapper">
+        <lightgallery
+          :settings="{ speed: 500, plugins: plugins }"
+          :onInit="onInit"
+          :onBeforeSlide="onBeforeSlide"
+        >
+          <a v-for="img in lightGalleryImages" :key="img" :href="img">
+            <img :alt="img" :src="img" />
+          </a>
+        </lightgallery>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'About',
+<script lang="ts">
+// import Vue from 'vue';
+import { Vue, Options } from 'vue-class-components';
+import Lightgallery from 'lightgallery/vue';
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import lgZoom from 'lightgallery/plugins/zoom';
 
-  data() {
-    return {
-      fluxImages: [
-        'http://meteo.wachcio.pl/assets/slider/meteo1.png',
-        'http://meteo.wachcio.pl/assets/slider/meteo2.png',
-        'http://meteo.wachcio.pl/assets/slider/meteo3.png',
-        'http://meteo.wachcio.pl/assets/slider/meteo4.png',
-        'http://meteo.wachcio.pl/assets/slider/IMG_5905.jpg',
-        'http://meteo.wachcio.pl/assets/slider/IMG_5925.jpg',
-        'http://meteo.wachcio.pl/assets/slider/IMG_20190104_144055.jpg',
-        'http://meteo.wachcio.pl/assets/slider/IMG_20180407_161515269.jpg',
-        'http://meteo.wachcio.pl/assets/slider/IMG_20180407_161528834.jpg',
-        'http://meteo.wachcio.pl/assets/slider/IMG_20180408_112302544.jpg',
-      ],
-    };
+@Options({
+  components: {
+    Lightgallery,
   },
-};
+  data: () => ({
+    plugins: [lgThumbnail, lgZoom],
+    lightGalleryImages: [
+      'http://meteo.wachcio.pl/assets/slider/meteo1.png',
+      'http://meteo.wachcio.pl/assets/slider/meteo2.png',
+      'http://meteo.wachcio.pl/assets/slider/meteo3.png',
+      'http://meteo.wachcio.pl/assets/slider/meteo4.png',
+      'http://meteo.wachcio.pl/assets/slider/IMG_5905.jpg',
+      'http://meteo.wachcio.pl/assets/slider/IMG_5925.jpg',
+      'http://meteo.wachcio.pl/assets/slider/IMG_20190104_144055.jpg',
+      'http://meteo.wachcio.pl/assets/slider/IMG_20180407_161515269.jpg',
+      'http://meteo.wachcio.pl/assets/slider/IMG_20180407_161528834.jpg',
+      'http://meteo.wachcio.pl/assets/slider/IMG_20180408_112302544.jpg',
+    ],
+  }),
+  methods: {
+    onInit: () => {
+      console.log('lightGallery has been initialized');
+    },
+    onBeforeSlide: () => {
+      console.log('calling before slide');
+    },
+  },
+})
+class App extends Vue {}
+
+export default App;
 </script>
 
 <style lang="scss" scoped>
+@import 'lightgallery/css/lightgallery.css';
+@import 'lightgallery/css/lg-thumbnail.css';
+@import 'lightgallery/css/lg-zoom.css';
 .wrapper {
   p {
     margin: 1.5em 1.5em;
