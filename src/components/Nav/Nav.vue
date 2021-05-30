@@ -1,32 +1,16 @@
 <template>
   <nav>
     <div class="container">
-      <div class="item refresh" @click="getCurrentJSON()">
+      <div class="item refresh" @click="getCurrentJSON()" :class="getClassRefreshButton()">
         Odśwież dane
       </div>
-      <router-link
-        to="/current"
-        tag="div"
-        class="item current"
-        active-class="active"
-        exact
-      >
+      <router-link to="/current" tag="div" class="item current" active-class="active" exact>
         Odczyty aktualne
       </router-link>
-      <router-link
-        to="/archive"
-        tag="div"
-        class="item archive"
-        active-class="active"
-      >
+      <router-link to="/archive" tag="div" class="item archive" active-class="active">
         Odczyty archiwalne
       </router-link>
-      <router-link
-        to="about"
-        tag="div"
-        class="item about"
-        active-class="active"
-      >
+      <router-link to="about" tag="div" class="item about" active-class="active">
         O projekcie
       </router-link>
     </div>
@@ -34,19 +18,23 @@
 </template>
 
 <script>
-// import axios from "axios";
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
-  name: "Nav",
+  name: 'Nav',
   props: {},
   computed: {
-    ...mapState(["sensorsCurrent", "isLoaded", "showInfo"])
+    ...mapState(['sensorsCurrent', 'isLoaded', 'showInfo']),
   },
   methods: {
-    ...mapMutations(["updateSensorsCurrent"]),
-    ...mapActions(["getCurrentJSON"])
-  }
+    ...mapMutations(['updateSensorsCurrent']),
+    ...mapActions(['getCurrentJSON']),
+    getClassRefreshButton() {
+      if (this.$route.path != '/current') {
+        return 'disable';
+      }
+    },
+  },
 };
 </script>
 
@@ -85,6 +73,10 @@ a {
 }
 .active {
   background-color: #68bafb;
+}
+.disable {
+  opacity: 0.3;
+  cursor: default;
 }
 
 @media screen and (max-width: 1100px) {
