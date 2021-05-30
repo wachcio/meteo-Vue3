@@ -16,7 +16,7 @@
           <div v-for="(sensorCurrent, i) in sensorsToCategory(n)" :key="i">
             <Sensor :sensor-current="sensorCurrent" />
           </div>
-          <AirQualityWidget v-if="n == nrOfCategory" />
+          <AirQualityWidget v-if="n == nrOfCategory" sensorName="warszawska" />
         </div>
         <!-- </AnimateCSS> -->
       </div>

@@ -1,10 +1,12 @@
 <template>
   <div class="widgets">
     <iframe
+      v-if="sensorName == 'warszawska'"
       id="airly_428486066"
       :src="'https://airly.eu/map/widget.html#w=280&h=380&m=true&i=true&d=false&ah=true&aw=false&l=pl&it=AIRLY_CAQI&us=metric&ut=celsius&lat=53.062772&lng=19.411941&id=43200'"
     ></iframe>
     <iframe
+      v-if="sensorName == 'cholewinskiego'"
       id="airly_874508336"
       src="https://airly.org/map/widget.html#w=280&h=380&m=true&i=true&d=false&ah=true&aw=false&l=pl&it=AIRLY_CAQI&us=metric&ut=celsius&lat=53.068923&lng=19.422556&id=18800"
     ></iframe>
@@ -14,7 +16,7 @@
 <script>
 export default {
   name: 'AirQualityWidget',
-  props: {},
+  props: { sensorName: String },
   data() {
     return {};
   },
