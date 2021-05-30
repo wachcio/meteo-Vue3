@@ -73,6 +73,7 @@ export default {
       }
     },
   },
+
   methods: {
     ...mapMutations(['updateSensorsCurrent']),
     ...mapActions(['getCurrentJSON']),
@@ -113,6 +114,9 @@ export default {
         return el !== undefined;
       });
     },
+  },
+  beforeMount() {
+    this.getCurrentJSON();
   },
 };
 </script>

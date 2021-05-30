@@ -6,17 +6,18 @@
     <div>
       <Nav :endpoint-current="endpointCurrent" :is-loaded="isLoaded" :show-info="showInfo" />
 
-      <!-- <AnimateCSS enter="lightSpeedIn" leave="lightSpeedOut"> -->
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
-      <!-- </AnimateCSS> -->
+      <AnimateCSS enter="lightSpeedIn" leave="lightSpeedOut">
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </AnimateCSS>
     </div>
-    <Preloader />
+
     <footer>
       <hr />
       <div>Wachcio &copy; 2018-{{ getCurrentYear }}</div>
     </footer>
+    <Preloader v-if="!isLoaded && !sensorsCurrent.length" />
   </div>
 </template>
 

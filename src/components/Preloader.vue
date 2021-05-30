@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isLoaded && !sensorsCurrent.length" id="preloader">
+  <div id="preloader">
     <img src="http://meteo.wachcio.pl/assets/preloader.png" />
   </div>
 </template>

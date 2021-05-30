@@ -66,7 +66,7 @@
     </p>
     <div class="sliderContainer">
       <div class="sliderWrapper">
-        <lightgallery
+        <!-- <lightgallery
           :settings="{ speed: 500, plugins: plugins }"
           :onInit="onInit"
           :onBeforeSlide="onBeforeSlide"
@@ -74,21 +74,20 @@
           <a v-for="img in lightGalleryImages" :key="img.normalSize" :href="img.normalSize">
             <img className="img-responsive" :alt="img" :src="img.thumbnails" />
           </a>
-        </lightgallery>
+        </lightgallery> -->
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-// import Vue from 'vue';
-import { Vue, Options } from 'vue-class-component';
+<script>
+// import { Vue, Options } from 'vue-class-component';
 import Lightgallery from 'lightgallery/vue';
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 // import lgZoom from 'lightgallery/plugins/zoom';
 import lgZoom from 'lightgallery/scss/lightgallery.scss';
 
-@Options({
+export default {
   components: {
     Lightgallery,
   },
@@ -146,10 +145,7 @@ import lgZoom from 'lightgallery/scss/lightgallery.scss';
       console.log('calling before slide');
     },
   },
-})
-class App extends Vue {}
-
-export default App;
+};
 </script>
 
 <style lang="scss" scoped>
