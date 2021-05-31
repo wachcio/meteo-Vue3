@@ -46,8 +46,8 @@
     </p>
     <p>
       Ostatnim elementem `układanki` jest odpytywanie bazy danych
-      <a href="https://airly.eu/pl/" target="_blank">Airly</a> o dane z czujnika jakości powietrza
-      znajdującego się w mojej miejscowości.
+      <a href="https://airly.eu/pl/" target="_blank">Airly</a> o dane z czujników jakości powietrza
+      znajdującego się w mojej miejscowości (od maja 2021 dostępne są dwa czujniki).
     </p>
     <p>
       Dane z wszystkich moich części systemu trafiają co minutę do bazy danych MySQL umieszczonej na
@@ -75,6 +75,7 @@
             <img className="img-responsive" :alt="img" :src="addPatchToImg('thumbnail', img)" />
           </a>
         </lightgallery> -->
+        <Gallery />
       </div>
     </div>
   </div>
@@ -87,9 +88,12 @@ import lgThumbnail from 'lightgallery/plugins/thumbnail';
 // import lgZoom from 'lightgallery/plugins/zoom';
 import lgZoom from 'lightgallery/scss/lightgallery.scss';
 
+import Gallery from './Gallery.vue';
+
 export default {
   components: {
     Lightgallery,
+    Gallery,
   },
   data: () => ({
     plugins: [lgThumbnail, lgZoom],
