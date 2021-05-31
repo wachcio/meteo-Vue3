@@ -103,7 +103,6 @@ export default {
       if (patchType === 'thumbnail') {
         patch = `${this.baseURL}thumbnails/${img}`;
       }
-      console.log(patch);
 
       return patch;
     },
