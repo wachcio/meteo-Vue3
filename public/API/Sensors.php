@@ -50,7 +50,6 @@ class Sensors
             $arr["valueCurrent"] = $db->getData("SELECT `" . $fieldName . "`, `data_odczytu`, `id` FROM  `" . $tableName . "` ORDER BY  `id` DESC LIMIT 0 , 1");
             $arr["valueMax"] = $db->getData("SELECT `" . $fieldName . "`, `data_odczytu` FROM  `" . $tableName . "` WHERE  `data_odczytu` > DATE_SUB( NOW( ) , INTERVAL 1 DAY ) ORDER BY `" . $fieldName . "` DESC LIMIT 1");
             $arr["valueMin"] = $db->getData("SELECT `" . $fieldName . "`, `data_odczytu` FROM  `" . $tableName . "` WHERE  `data_odczytu` > DATE_SUB( NOW( ) , INTERVAL 1 DAY ) ORDER BY `" . $fieldName . "` ASC LIMIT 1");
-
             if ($mathOperation == "temp") {
                 $arr["valueCurrent"]["value"] = round(($arr["valueCurrent"][$fieldName]) / 10, 1);
                 $arr["valueMax"]["value"] = round(($arr["valueMax"][$fieldName]) / 10, 1);
