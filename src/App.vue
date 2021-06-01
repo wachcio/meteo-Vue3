@@ -4,19 +4,20 @@
 
     <div>
       <Nav />
-      <router-view v-slot="{ Component }">
-        <keep-alive
-          ><AnimateCSS enter="lightSpeedIn" leave="lightSpeedOut"
-            ><component :is="Component" /></AnimateCSS
-        ></keep-alive>
-      </router-view>
+      <AnimateCSS enter="lightSpeedIn" leave="lightSpeedOut" appear="appear">
+        <router-view v-slot="{ Component }">
+          <keep-alive>
+            <component :is="Component" />
+          </keep-alive>
+        </router-view>
+      </AnimateCSS>
     </div>
 
     <footer>
       <hr />
       <div>Wachcio &copy; 2018-{{ getCurrentYear }}</div>
     </footer>
-    <Preloader v-if="!isLoaded && !sensorsCurrent.length" />
+    <Teleport to="#endOfBody"> <Preloader v-if="!isLoaded && !sensorsCurrent.length" /></Teleport>
   </div>
 </template>
 
