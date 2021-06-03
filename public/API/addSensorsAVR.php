@@ -7,6 +7,15 @@ require_once "hideSettings/apiSettings.php";
 $apiSettings = new apiSettings;
 $settings = $apiSettings->getSettings();
 
+//check IP
+require_once "IP.php";
+$IP = new IP;
+$user_ip = $IP->getUserIP();
+
+if (!in_array($user_ip, $settings['whiteList'])) {
+    return;
+}
+
 //sprawdzamy czy otrzymaliśmy TOKEN.
 if ((isset($_GET[TOKEN]))) {
 
