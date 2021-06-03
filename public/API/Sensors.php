@@ -630,6 +630,7 @@ class Sensors
                 if ($operation == "min") {
                     $query = $query . " ORDER BY `" . $fieldName . "` ASC LIMIT 1 ";
                 }
+                $arr["query"] = $query;
 
                 $arr["value"] = $db->getData($query);
                 if ($operation == "min" || $operation == "max") {
