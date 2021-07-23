@@ -1,5 +1,5 @@
 <?php
- 
+
 class dbSettings
 {
     private $setting = [];
@@ -16,5 +16,6 @@ class dbSettings
         $this->setting['user'] = "";
         $this->setting['password'] = "";
         $this->setting['host'] = "localhost";
+        $this->setting['API_key'] = "";
     }
 }
